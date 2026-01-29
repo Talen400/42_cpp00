@@ -11,7 +11,7 @@ class Contact
 		std::string _secret;
 		std::string _first_name;
 		std::string _last_name;
-		//bool _is_init;
+		
 	public:
 		void setContact(
 				std::string number,
@@ -19,7 +19,12 @@ class Contact
 				std::string secret,
 				std::string first,
 				std::string last);
-		std::string getContact(void) const;
+		void		printContact(void) const;
+		std::string	getNumber(void) const;
+		std::string	getNickname(void) const;
+		std::string	getSecret(void) const;
+		std::string	getFirstName(void) const;
+		std::string	getLastName(void) const;
 };
 
 #endif
