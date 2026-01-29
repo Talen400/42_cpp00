@@ -2,7 +2,7 @@ NAME := phone
 CC := c++
 CFLAGS := -Wextra -Wall -Werror -std=c++98
 
-SRC := phone.cpp contact.cpp
+SRC := main.cpp contact.cpp
 OBJ := $(SRC:.cpp=.o)
 
 all: $(NAME)
