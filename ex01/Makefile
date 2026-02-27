@@ -1,16 +1,18 @@
 NAME := phone
 CC := c++
-CFLAGS := -Wextra -Wall -Werror -std=c++98
+INC := -I.
+CFLAGS := -Wextra -Wall -Werror -std=c++98 $(INC)
 
-SRC := main.cpp contact.cpp
+SRC := main.cpp Contact.cpp PhoneBook.cpp
 OBJ := $(SRC:.cpp=.o)
+HEADERS := Contact.hpp PhoneBook.hpp
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(CC) $(OBJ) -o $@
 
-$($OBJ): $(SRC)
+%.o: %.cpp $(HEADERS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:

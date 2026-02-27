@@ -1,4 +1,5 @@
 #include "PhoneBook.hpp"
+#include <iomanip>
 
 PhoneBook::PhoneBook()
 {
@@ -33,6 +34,13 @@ void PhoneBook::addContact()
 		_len++;
 }
 
+std::string	PhoneBook::_truncate(std::string str) const
+{
+	if (str.length() > 10)
+		return str.substr(0, 9) + ".";
+	return str;
+}
+
 void PhoneBook::searchContact(int index) const
 {
 	if (index >=0 && index < _len)
@@ -43,5 +51,17 @@ void PhoneBook::searchContact(int index) const
 
 void PhoneBook::displayList() const
 {
+	std::cout << std::setw(10) << "Index" << "|"
+			  << std::setw(10) << "First Name" << "|"
+			  << std::setw(10) << "last Name"  << "|" 
+			  << std::setw(10) << "Nickname" << std::endl;
 
+	for (int i = 0; i < _len; i++)
+	{
+		std::cout << std::setw(10) << i << "|" 
+				  << std::setw(10) << _truncate(_list_contact[i].getFirstName()) << "|"
+				  << std::setw(10) << _truncate(_list_contact[i].getLastName()) << "|"
+				  << std::setw(10) << _truncate(_list_contact[i].getNickname()) << "|"
+				  << std::endl;			  
+	}
 }
