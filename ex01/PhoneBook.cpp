@@ -7,28 +7,9 @@ PhoneBook::PhoneBook()
 	_index = 0;
 }
 
-void PhoneBook::addContact()
+void PhoneBook::addContact(const Contact &contact)
 {
-	Contact contact;
-
-	std::string number, nickname, secret, first, last;
-
-	std::cout << "number: ";
-	std::cin >> number;
-	
-	std::cout << "nickname: ";
-	std::cin >> nickname;
-	
-	std::cout << "secret: ";
-	std::cin >> secret;
-	
-	std::cout << "first: ";
-	std::cin >> first;
-	
-	std::cout << "last: ";
-	std::cin >> last;
-
-	_list_contact[_index].setContact(number, nickname, secret, first, last);
+	_list_contact[_index] = contact;
 	_index = (_index + 1) % 8;
 	if (_len < 8)
 		_len++;
