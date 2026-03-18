@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Contact.hpp"
 #include "PhoneBook.hpp"
+#include <cstdlib>
 
 static std::string	readField(const std::string &prompt) {
 	std::string	input;
@@ -10,7 +11,7 @@ static std::string	readField(const std::string &prompt) {
 		if (!std::getline(std::cin, input))
 		{
 			std::cout << "Exiting..." << std::endl;
-			exit(0);
+			std::exit(0);
 		}
 		if (!input.empty())
 			return input;
@@ -22,7 +23,6 @@ int	main(int argc, char *argv[])
 {
 	PhoneBook 	Phone;
 	std::string command;
-	int			index;
 
 	while (true)
 	{
@@ -35,15 +35,32 @@ int	main(int argc, char *argv[])
 
 		if (command == "ADD")
 		{
-			std::string
-			Phone.addContact();
+			Contact contact;
+
+			std::string	number;
+			std::string	nickname;
+			std::string	first_name;
+			std::string last_name;
+			std::string	secret;
+
+			number = readField("Number: ");
+			nickname = readField("Nickname: ");
+			first_name = readField("First Name: ");
+			last_name = readField("Last Name: ");
+			secret = readField("Secret: ");
+
+			contact.setContact(number, nickname, secret, first_name, last_name);
+			Phone.addContact(contact);
 		}
 		else if (command == "SEARCH")
 		{
+			std::string	indexStr;
+			int			idx;
+	
 			Phone.displayList();
-			std::cout << "insert index: ";
-			std::cin >> index;
-			Phone.searchContact(index);
+			indexStr = readField("Index: ");
+			idx = atoi(indexStr.c_str());
+			Phone.searchContact(idx);
 		}
 		else if (command == "EXIT")
 			break ;
